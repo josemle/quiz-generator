@@ -1,0 +1,170 @@
+.container {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.summary {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.questionCard {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.questionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.questionText {
+    font-size: 1.1rem;
+    margin: 0;
+    padding-right: 1rem;
+}
+
+.difficulty {
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    color: white;
+    text-transform: capitalize;
+    flex-shrink: 0;
+}
+
+.easy { background-color: var(--success-color); }
+.medium { background-color: #ffc107; color: var(--text-color); }
+.hard { background-color: var(--danger-color); }
+
+.optionsList {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.optionsList li {
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.correctAnswer {
+    background-color: rgba(40, 167, 69, 0.15);
+    font-weight: bold;
+    color: #155724;
+}
+
+.explanation {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    background-color: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+.footer {
+    margin-top: 2rem;
+}
+
+.topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.topicTag {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 0.3rem 0.7rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+/* Take Quiz Mode Styles */
+.modeButton {
+    padding: 0.6rem 1.2rem;
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+.modeButton:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.quizOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.quizOption {
+    display: block;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+.quizOption:hover {
+    background-color: #f8f9fa;
+}
+
+.quizOption input {
+    margin-right: 0.75rem;
+}
+
+.incorrectAnswer {
+    background-color: rgba(220, 53, 69, 0.15);
+    border-color: var(--danger-color);
+    color: #721c24;
+}
+
+.quizActions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.submitQuizButton {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+.submitQuizButton:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.scoreCard {
+    text-align: center;
+    background-color: #e9f5ff;
+    border: 1px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
