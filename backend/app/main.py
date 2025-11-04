@@ -72,7 +72,7 @@ def generate_quiz_with_llm(text_content: str, title: str):
 
     - "summary": A concise 2-3 sentence summary of the text.
     - "key_entities": A dictionary with "people", "organizations", and "locations" as keys. Each key should have a list of relevant string names.
-    - "quiz": A list containing 5 to 7 quiz question objects. Each object MUST have these keys: "question", "options" (a list of exactly 4 unique strings), "answer" (one of the strings from the options list), "explanation" (a brief sentence on why the answer is correct), and "difficulty" (a string which must be one of 'easy', 'medium', or 'hard').
+    - "quiz": A list containing EXACTLY 10 quiz question objects. Each object MUST have these keys: "question", "options" (a list of exactly 4 unique strings), "answer" (one of the strings from the options list), "explanation" (a brief sentence on why the answer is correct), and "difficulty" (a string which must be one of 'easy', 'medium', or 'hard').
     - "related_topics": A list of 3-5 strings representing related Wikipedia topics.
 
     TEXT CONTENT:

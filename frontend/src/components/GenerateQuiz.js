@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './GenerateQuiz.module.css';
+import QuizDisplay from './QuizDisplay';
 
 const GenerateQuiz = ({ apiUrl, onQuizGenerated }) => {
     const [url, setUrl] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [titlePreview, setTitlePreview] = useState('');
+    const [generatedQuiz, setGeneratedQuiz] = useState(null);
 
     const handleUrlChange = (e) => {
         const newUrl = e.target.value;
         setUrl(newUrl);
         setError('');
+        setGeneratedQuiz(null);
+        
         if (newUrl && newUrl.includes('wikipedia.org/wiki/')) {
             axios.get(`${apiUrl}/validate-url/?url=${encodeURIComponent(newUrl)}`)
                 .then(res => setTitlePreview(res.data.title))
@@ -29,10 +33,12 @@ const GenerateQuiz = ({ apiUrl, onQuizGenerated }) => {
         }
         setIsLoading(true);
         setError('');
+        setGeneratedQuiz(null);
 
         try {
-            await axios.post(`${apiUrl}/generate-quiz/`, { url });
-            onQuizGenerated(); // Callback to parent to switch tabs and refresh
+            const response = await axios.post(`${apiUrl}/generate-quiz/`, { url });
+            setGeneratedQuiz(response.data);
+            onQuizGenerated();
         } catch (err) {
             setError(err.response?.data?.detail || 'Failed to generate quiz. Please check the URL and try again.');
         } finally {
@@ -71,6 +77,17 @@ const GenerateQuiz = ({ apiUrl, onQuizGenerated }) => {
               </div>
             )}
             {error && <p className={styles.error}>{error}</p>}
+
+            {generatedQuiz && (
+                <div className={styles.results}>
+                    <h2 className={styles.resultsTitle}>Quiz Ready!</h2>
+                    
+                    {/* --- KEY CHANGE --- */}
+                    {/* We pass the `startInQuizMode` prop here to force the initial state */}
+                    <QuizDisplay quizData={generatedQuiz} startInQuizMode={true} />
+
+                </div>
+            )}
         </div>
     );
 };

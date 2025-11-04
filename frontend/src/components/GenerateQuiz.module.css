@@ -1,9 +1,13 @@
 .container {
-    text-align: center;
+    background: var(--surface-color);
+    padding: 2.5rem 3rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .hero {
-    margin: 2rem 0 3rem 0;
+    text-align: center;
+    margin: 1rem 0 2.5rem 0;
 }
 
 .hero h1 {
@@ -41,7 +45,6 @@
     border: 1px solid var(--border-color);
     transition: var(--transition);
 }
-
 .urlInput:focus {
     outline: none;
     border-color: var(--primary-color);
@@ -72,11 +75,9 @@
     cursor: pointer;
     transition: var(--transition);
 }
-
 .submitButton:hover {
     background-color: var(--primary-hover-color);
 }
-
 .submitButton:disabled {
     background-color: var(--secondary-color);
     cursor: not-allowed;
@@ -99,4 +100,16 @@
     border-radius: var(--border-radius);
     max-width: 700px;
     margin: 1rem auto 0 auto;
+}
+
+.results {
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+}
+
+.resultsTitle {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
 }

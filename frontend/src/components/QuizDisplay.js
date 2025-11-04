@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import styles from './QuizDisplay.module.css';
 
-const QuizDisplay = ({ quizData }) => {
-    const [takeQuizMode, setTakeQuizMode] = useState(false);
+// SVG Icons for visual feedback
+const CheckIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+    </svg>
+);
+
+const CrossIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+    </svg>
+);
+
+const QuizDisplay = ({ quizData, startInQuizMode = false }) => {
+    const [takeQuizMode, setTakeQuizMode] = useState(startInQuizMode);
     const [userAnswers, setUserAnswers] = useState({});
     const [submitted, setSubmitted] = useState(false);
 
@@ -14,10 +27,15 @@ const QuizDisplay = ({ quizData }) => {
     };
 
     const handleSubmit = () => {
+        if (Object.keys(userAnswers).length < quizData.quiz_data.length) {
+            alert('Please answer all questions before submitting.');
+            return;
+        }
         setSubmitted(true);
     };
-
+    
     const calculateScore = () => {
+        if (!quizData || !quizData.quiz_data) return 0;
         return quizData.quiz_data.reduce((score, question, index) => {
             return userAnswers[index] === question.answer ? score + 1 : score;
         }, 0);
@@ -33,14 +51,24 @@ const QuizDisplay = ({ quizData }) => {
         }
     };
     
-    // Default View (View Answers)
+    if (!quizData || !quizData.quiz_data) {
+        return <p>Quiz data is not available.</p>;
+    }
+
+    const resetQuiz = () => {
+        setUserAnswers({});
+        setSubmitted(false);
+        setTakeQuizMode(true);
+    };
+    
+    // View Answers / Explanations Mode
     if (!takeQuizMode) {
         return (
             <div className={styles.container}>
                 <div className={styles.header}>
                     <h2>{quizData.title}</h2>
-                    <button className={styles.modeButton} onClick={() => setTakeQuizMode(true)}>
-                        Take Quiz
+                    <button className={styles.modeButton} onClick={resetQuiz}>
+                        Take Quiz Again
                     </button>
                 </div>
                 <p className={styles.summary}>{quizData.summary}</p>
@@ -53,7 +81,8 @@ const QuizDisplay = ({ quizData }) => {
                         </div>
                         <ul className={styles.optionsList}>
                             {q.options.map((option, i) => (
-                                <li key={i} className={option === q.answer ? styles.correctAnswer : ''}>
+                                <li key={i} className={option === q.answer ? styles.correctOptionStatic : ''}>
+                                    {option === q.answer && <CheckIcon />}
                                     {option}
                                 </li>
                             ))}
@@ -65,7 +94,7 @@ const QuizDisplay = ({ quizData }) => {
                 <div className={styles.footer}>
                     <strong>Related Topics:</strong>
                     <div className={styles.topics}>
-                        {quizData.related_topics.map(topic => <span key={topic} className={styles.topicTag}>{topic}</span>)}
+                        {quizData.related_topics && quizData.related_topics.map(topic => <span key={topic} className={styles.topicTag}>{topic}</span>)}
                     </div>
                 </div>
             </div>
@@ -76,12 +105,16 @@ const QuizDisplay = ({ quizData }) => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h2>{quizData.title} - Quiz Mode</h2>
+                <h2>{quizData.title}</h2>
+                <span className={styles.quizModePill}>Quiz Mode</span>
             </div>
             {submitted && (
                 <div className={styles.scoreCard}>
                     <h3>Quiz Complete!</h3>
-                    <p>Your score: <strong>{calculateScore()} / {quizData.quiz_data.length}</strong></p>
+                    <p>You scored</p>
+                    <div className={styles.scoreValue}>
+                      {calculateScore()} / {quizData.quiz_data.length}
+                    </div>
                 </div>
             )}
             
@@ -90,25 +123,31 @@ const QuizDisplay = ({ quizData }) => {
                     <p className={styles.questionText}><strong>{index + 1}.</strong> {q.question}</p>
                     <div className={styles.quizOptions}>
                         {q.options.map((option, i) => {
+                            const isSelected = userAnswers[index] === option;
+                            const isCorrect = option === q.answer;
+                            
                             let optionClass = styles.quizOption;
-                            if (submitted) {
-                                if (option === q.answer) {
-                                    optionClass += ` ${styles.correctAnswer}`;
-                                } else if (userAnswers[index] === option) {
-                                    optionClass += ` ${styles.incorrectAnswer}`;
-                                }
+                            if (isSelected) {
+                                optionClass += ` ${styles.selectedOption}`;
                             }
+                            if (submitted) {
+                                if (isCorrect) optionClass += ` ${styles.correctOption}`;
+                                else if (isSelected && !isCorrect) optionClass += ` ${styles.incorrectOption}`;
+                            }
+
                             return (
                                 <label key={i} className={optionClass}>
                                     <input
                                         type="radio"
                                         name={`question-${index}`}
                                         value={option}
-                                        checked={userAnswers[index] === option}
+                                        checked={isSelected}
                                         onChange={() => handleAnswerChange(index, option)}
                                         disabled={submitted}
                                     />
-                                    {option}
+                                    <span>{option}</span>
+                                    {submitted && isCorrect && <span className={styles.icon}><CheckIcon /></span>}
+                                    {submitted && isSelected && !isCorrect && <span className={styles.icon}><CrossIcon /></span>}
                                 </label>
                             );
                         })}
@@ -122,9 +161,12 @@ const QuizDisplay = ({ quizData }) => {
                         Submit Answers
                     </button>
                 ) : (
-                    <button className={styles.modeButton} onClick={() => { setTakeQuizMode(false); setSubmitted(false); setUserAnswers({}); }}>
-                        View Explanations
-                    </button>
+                    <div className={styles.postSubmitActions}>
+                        <button className={styles.modeButton} onClick={resetQuiz}>Try Again</button>
+                        <button className={styles.primaryButton} onClick={() => setTakeQuizMode(false)}>
+                            View Explanations
+                        </button>
+                    </div>
                 )}
             </div>
         </div>

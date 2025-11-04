@@ -1,8 +1,6 @@
 /*
   This file contains global CSS variables and utility classes.
-  Import this ONCE in your top-level App.js file.
 */
-
 :root {
   --primary-color: #4F46E5; /* Indigo */
   --primary-hover-color: #4338CA;
@@ -30,10 +28,10 @@
 }
 
 @keyframes spin {
-  0% {
+  from {
     transform: rotate(0deg);
   }
-  100% {
+  to {
     transform: rotate(360deg);
   }
 }
