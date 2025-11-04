@@ -4,7 +4,7 @@ import styles from './App.module.css';
 import GenerateQuiz from './components/GenerateQuiz';
 import PastQuizzes from './components/PastQuizzes';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = 'https://intelliquiz-api.onrender.com';
 
 function App() {
   const [activeTab, setActiveTab] = useState('generate');
