@@ -65,7 +65,7 @@ function App() {
           <div className={styles.footerText}>
             <span>&copy; {new Date().getFullYear()} IntelliQuiz</span>
             <span>|</span>
-            <span>Created by Akhand Pratap</span>
+            <span>Created by Akhand Pratap Shukla</span>
           </div>
 
           <div className={styles.socialLinks}>
