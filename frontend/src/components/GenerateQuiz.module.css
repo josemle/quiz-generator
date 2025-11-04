@@ -164,3 +164,27 @@
         opacity: 1;
     }
 }
+
+/* --- Media Queries for Responsive Design --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem 1rem;
+    box-shadow: none; /* Often looks cleaner without shadows on mobile */
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .urlInput, .submitButton {
+    font-size: 1rem;
+  }
+
+  .resultsTitle {
+    font-size: 1.5rem;
+  }
+}

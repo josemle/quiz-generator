@@ -102,3 +102,41 @@
     padding: 0;
 }
 .closeButton:hover { color: var(--text-color); }
+
+/* --- Media Queries for Responsive Design --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem 0.5rem;
+    box-shadow: none;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .quizTable {
+    display: block; /* Allows horizontal scrolling if still too wide */
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .quizTable th, .quizTable td {
+    padding: 0.75rem;
+  }
+
+  /* --- HIDE THE URL COLUMN (2nd column) ON SMALL SCREENS --- */
+  .quizTable th:nth-child(2),
+  .quizTable td:nth-child(2) {
+    display: none;
+  }
+
+  .modalContent {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .closeButton {
+    top: 5px;
+    right: 10px;
+  }
+}

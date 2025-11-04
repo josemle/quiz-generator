@@ -111,3 +111,30 @@
   color: var(--primary-color);
   transform: translateY(-2px); /* Lifts the icon on hover */
 }
+
+/* --- Media Queries for Responsive Design --- */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .appName {
+    font-size: 1.25rem;
+  }
+
+  .mainContent {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+
+  .tabContainer {
+    /* Allows scrolling if tabs overflow on very small screens */
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .footerContent {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+}
