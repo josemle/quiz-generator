@@ -3,8 +3,8 @@
 [![Frontend Live](https://img.shields.io/badge/frontend-live-green)](https://intelliquizwiki.netlify.app/)
 [![Backend Docs](https://img.shields.io/badge/backend-API-blue)](https://intelliquiz-api.onrender.com/docs#/)
 [![MIT License](https://img.shields.io/badge/license-MIT-lightgrey)](#license)
-[![backend.md](https://img.shields.io/badge/backend.md-lightgrey)](./backend/backend.md)
-[![frontend.md](https://img.shields.io/badge/frontend.md-lightgrey)](./frontend/frontend.md)
+[![Backend README.md](https://img.shields.io/badge/backend.md-lightgrey)](./backend/README.md)
+[![Frontend README.md](https://img.shields.io/badge/frontend.md-lightgrey)](./frontend/README.md)
 ---
 
 ## About

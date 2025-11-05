@@ -4,7 +4,7 @@ import styles from './PastQuizzes.module.css';
 import QuizDisplay from './QuizDisplay';
 
 const PastQuizzes = ({ apiUrl }) => {
-    // --- FIX 1: Initial state is a SAFE empty array, not null ---
+    // --- Initial state is a SAFE empty array, not null ---
     const [quizzes, setQuizzes] = useState([]);
     const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +27,7 @@ const PastQuizzes = ({ apiUrl }) => {
             });
     }, [apiUrl]); // This useEffect runs when the component is mounted
 
-    // --- FIX 2: Render the loading state FIRST ---
+    // --- Render the loading state FIRST ---
     if (isLoading) {
         return (
             <div className={styles.centered}>

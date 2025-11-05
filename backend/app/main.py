@@ -96,11 +96,9 @@ def generate_quiz_with_llm(text_content: str, title: str):
 @app.post("/generate-quiz/", response_model=schemas.Quiz, status_code=201)
 def generate_quiz_from_url(req: schemas.QuizGenerationRequest, db: Session = Depends(get_db)):
     
-    # --- DEFINITIVE FIX ---
     # Convert the special Pydantic HttpUrl to a plain string immediately.
     # Then, use this plain string variable everywhere else.
     url_as_string = str(req.url)
-    # --- END OF FIX ---
 
     db_quiz = crud.get_quiz_by_url(db, url=url_as_string)
     if db_quiz:

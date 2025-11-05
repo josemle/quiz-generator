@@ -30,11 +30,10 @@ class QuizInfo(BaseModel):
         from_attributes = True
 
 # --- Internal Data Models ---
-# THIS IS THE CRITICAL FIX.
 # This model is used to create the database entry. The `url` field MUST be a plain string
 # because this is what SQLAlchemy will pass to the database driver.
 class QuizCreate(BaseModel):
-    url: str # This was HttpUrl, now it's correctly str.
+    url: str 
     title: str
     summary: str
     quiz_data: List[Dict[str, Any]]

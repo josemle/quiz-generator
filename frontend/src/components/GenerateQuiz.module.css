@@ -114,8 +114,6 @@
     margin-bottom: 2rem;
 }
 
-/* ADD THESE NEW STYLES */
-
 .container {
     position: relative; /* Needed for the overlay to position correctly */
     background: var(--surface-color);
