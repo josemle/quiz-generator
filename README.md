@@ -14,9 +14,13 @@
 ---
 
 ## Demo Links
+- **Demo GIF:** Here is a quick demonstration of the **IntelliQuiz** in action.
 
+![IntelliQuiz Demo](./IOFiles/demo.gif)
 - **Frontend:** [https://intelliquizwiki.netlify.app/](https://intelliquizwiki.netlify.app/)
+
 - **Backend API (Swagger UI):** [https://intelliquiz-api.onrender.com/docs#/](https://intelliquiz-api.onrender.com/docs#/)
+
 - **GitHub Repo:** [A-P-Shukla/quiz-generator-project](https://github.com/A-P-Shukla/quiz-generator-project)
 
 ---
