@@ -28,7 +28,7 @@ const GenerateQuiz = ({ apiUrl, onQuizGenerated }) => {
                 .then(res => setTitlePreview(res.data.title))
                 .catch(() => setTitlePreview(''));
         } else {
-            setTitlePreview('');
+            setTitlePreview('InValid URL');
         }
     };
 
