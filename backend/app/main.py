@@ -59,7 +59,7 @@ def scrape_wikipedia_content(url: str):
             "raw_html": response.text
         }
     except requests.exceptions.RequestException as e:
-        raise HTTPException(status_code=400, detail=f"Error fetching URL: {e}")
+        raise HTTPException(status_code=400, detail=f"Error fetching URL: {e} Please enter a valid Wikipedia URL to begin.")
     except ValueError as e:
         raise HTTPException(status_code=422, detail=f"Error parsing page content: {e}")
 
