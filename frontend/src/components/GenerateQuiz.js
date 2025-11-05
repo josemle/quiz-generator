@@ -28,7 +28,7 @@ const GenerateQuiz = ({ apiUrl, onQuizGenerated }) => {
                 .then(res => setTitlePreview(res.data.title))
                 .catch(() => setTitlePreview(''));
         } else {
-            setTitlePreview('InValid URL');
+            setError('Please enter a valid Wikipedia URL to begin.');
         }
     };
 
