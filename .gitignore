@@ -2,3 +2,5 @@ backend/env
 backend/.env
 backend/app/__pycache__
 frontend/.gitignore
+config.bat
+node_modules
